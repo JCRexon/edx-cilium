@@ -1,0 +1,13 @@
+# For multi-node cluster (control-plane + 2 workers)
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+- role: worker
+- role: worker
+networking:
+  disableDefaultCNI: true  # Critical for Cilium installation
+  podSubnet: "10.244.0.0/16"  # Match Cilium's default
+
+
+# kind create cluster --name=kind-cilium --config=kind-config.yaml
